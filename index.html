@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <title> Page</title>
+    <body>
+        <h1>Register Page </h1>
+            <form id="reg-form">
+                 <input type="text" autocomplete="off" id="FirstName"placeholder="FirstName" ><br><br>
+                <input type="text" autocomplete="off"  id="LastName"placeholder="LastName" /><br><br>
+                <input type="text"  autocomplete="off"   id="Email" placeholder="Email" /><br><br>
+                <input type="text" autocomplete="off" id="MobileNo"placeholder="MobileNo" /><br><br>
+                <input type="text" autocomplete="off" id="Address"placeholder="Address"/><br><br> 
+                <input type="text" autocomplete="off" id="username"placeholder="username"/><br><br>
+                <input type="password" autocomplete="off" id="password" placeholder="password"/><br><br>
+                <input type="Submit" value="Submit Form" /><br><br>
+                <!-- <input type="button" value="Login" /><br><br> -->
+
+
+                </form>
+                <script>
+                        const form= document.getElementById("reg-form")
+                        form.addEventListener('submit',registerUser)
+                        async function registerUser(event){
+                            event.preventDefault()
+
+                            const FirstName=document.getElementById('FirstName').value 
+                             const LastName=document.getElementById('LastName').value 
+                             const Email=document.getElementById('Email').value 
+                             const MobileNo=document.getElementById('MobileNo').value 
+                             const Address=document.getElementById('Address').value 
+                            const username=document.getElementById('username').value 
+                            const password=document.getElementById('password').value 
+
+                         const result=  await fetch('/api/register',{
+                                method:'POST',
+                                headers:{
+                                    'Content-Type':'application/json'
+                                },
+                                body:JSON.stringify({
+                                     FirstName,
+                                    LastName,
+                                     Email,  
+                                     MobileNo,
+                                     Address,
+                                    username,
+                                    password
+                                })
+                            }).then(res=>res.json())
+                           console.log(result)
+                        //    if(result.status ==='ok'){
+                        //             //alert('SUCCESSS')
+
+                        //    }
+                        //    else{
+                        //        alert(result.error)
+                        //    }
+                        }
+
+
+                    </script>
+
+    </body>
+</html>
